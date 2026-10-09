@@ -26,6 +26,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <Link href="/pdf-preview" className="px-3 py-1.5 rounded-lg text-gray-300 text-sm hover:bg-gray-700 hover:text-white transition-colors">
                 PDF Preview
               </Link>
+              <Link href="/pdf-compiler" className="px-3 py-1.5 rounded-lg text-gray-300 text-sm hover:bg-gray-700 hover:text-white transition-colors">
+                PDF Compiler
+              </Link>
             </nav>
           </div>
         </header>

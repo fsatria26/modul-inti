@@ -39,12 +39,12 @@ export function parseTxt(
     columns = parsedLines[0];
     dataStart = 1;
   } else {
-    // headers = [] → auto-name
+    // headers = [] → auto-name as col1, col2, col3 ...
     let maxCols = 0;
     for (const line of parsedLines) {
       if (line.length > maxCols) maxCols = line.length;
     }
-    columns = Array.from({ length: maxCols }, (_, i) => `Kolom ${i + 1}`);
+    columns = Array.from({ length: maxCols }, (_, i) => `col${i + 1}`);
     dataStart = 0;
   }
 
@@ -63,11 +63,11 @@ export function parseTxt(
     }
     const row: DataRow = {};
     columns.forEach((col, i) => {
-      row[col || `kolom_${i + 1}`] = values[i] ?? "";
+      row[col || `col${i + 1}`] = values[i] ?? "";
     });
-    // If extra values beyond declared columns, put them in extra cols
+    // Extra values beyond declared columns
     for (let i = columns.length; i < values.length; i++) {
-      const extraCol = `Kolom ${i + 1}`;
+      const extraCol = `col${i + 1}`;
       row[extraCol] = values[i];
       if (!columns.includes(extraCol)) columns.push(extraCol);
     }
@@ -79,4 +79,18 @@ export function parseTxt(
 
 export function countLines(text: string): number {
   return text.replace(/^\uFEFF/, "").split(/\r?\n/).filter((l) => l.trim() !== "").length;
+}
+
+/**
+ * Reads and returns the first non-empty row of the file split by separator.
+ * Used for header detection preview before the user decides how to parse.
+ */
+export function detectFirstRow(text: string, separator: string): string[] {
+  const sep = resolveSep(separator);
+  const firstLine = text
+    .replace(/^\uFEFF/, "")
+    .split(/\r?\n/)
+    .find((line) => line.trim() !== "");
+  if (!firstLine) return [];
+  return firstLine.split(sep).map((v) => v.trim());
 }

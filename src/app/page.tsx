@@ -22,6 +22,13 @@ const modules = [
     category: "Document",
     desc: "Upload file PDF dan tampilkan preview langsung di browser dengan navigasi halaman dan kontrol zoom.",
   },
+  {
+    href: "/pdf-compiler",
+    icon: "📑",
+    title: "PDF Compiler",
+    category: "Document",
+    desc: "Susun konten dari editor teks (tab I & II) dan file PDF (tab III & IV), lalu kompilasi menjadi satu file PDF.",
+  },
 ];
 
 const categoryColor: Record<string, string> = {

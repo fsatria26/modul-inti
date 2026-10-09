@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Data Processing Tool — Next.js Starter
 
 Starter project untuk:
@@ -138,3 +139,6 @@ Direkomendasikan menambahkan:
 - audit log
 - ukuran file maksimum
 - background job untuk file besar
+=======
+# modul-inti
+>>>>>>> d0d1c73dea1315a60d5f34b11cfe7768361056c4
